@@ -19,26 +19,11 @@ class MyCrossBackward:
         return self.__name
     
     def __call__(self, x) -> Any:
-        """
-            This method is called when calling the model with the () operation.
-            Ex:
-                bcw = MyCrossBackward(...)
-                bcw(x) <- called here
-        """
-
         return self.run(x)
-    
+
     """ Public """
     
     def run(self, base) -> None:
-        """run the backward operation
-
-        Args:
-            base (MyTensor): basicly the tensor accumulating gradients
-
-        Returns:
-            None: nothing
-        """
         return self.__bf(base, *self.__data)
 
 class CorrectTensor:
@@ -50,7 +35,7 @@ class CorrectTensor:
                  crossOpBack : MyCrossBackward = None) -> None:
         # the __ prefix mark private attributes (it can't be recovered
         # outside of the class)
-        
+
         assert (isinstance(data, (list, np.ndarray, int))), "The given data is of an invalid type"
 
         # code the init here (take into account the different possible input types)
